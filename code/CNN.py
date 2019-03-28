@@ -1,5 +1,8 @@
 import tensorflow as tf
 from tensorflow.keras import layers
+import os
+
+os.chdir('..')
 
 model = tf.keras.Sequential([
     layers.BatchNormalization(),
