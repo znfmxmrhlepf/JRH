@@ -1,8 +1,11 @@
 import random
+import time
 import numpy as np
 import os
 import glob
 import cv2
+
+random.seed(time.time())
 
 def get_images(paths):
     images = np.zeros((len(paths), 600, 600, 3))
@@ -10,7 +13,8 @@ def get_images(paths):
 
     for i, path in enumerate(paths):
         images[i, :, :, :] = cv2.imread(path)
-        labels[i] = path[:path.find('_')]
+        print(path[:path.find('_')])
+        labels[i] = int(path[:path.find('_')])
 
     return (images, labels)
 
@@ -27,13 +31,21 @@ def load_data():
     imagePaths = [os.path.basename(x) for x in paths]
     random.shuffle(imagePaths)
     
-    test_paths = imagePaths[:500]
-    train_paths = imagePaths[500:]
+    data_test = data(imagePaths[:500])
+    data_train = data(imagePaths[500:])
 
-    (test_images, test_labels) = get_images(test_paths)
-    (train_images, train_labels) = get_images(train_paths)
+    (test_images, test_labels) = data_test.get_batch(50)
+    (train_images, train_labels) = data_train.get_batch(50)
 
-    print(test_labels)
+    # print(test_labels)
+
+class data():
+    def __init__(self, paths):
+        self.paths = paths
+
+    def get_batch(self, size):
+        random.shuffle(self.paths)
+        return get_images(self.paths[:size])
 
 if __name__ == '__main__':
     load_data()
