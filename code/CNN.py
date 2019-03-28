@@ -3,7 +3,7 @@ from tensorflow.keras import layers
 
 model = tf.keras.Sequential([
     layers.BatchNormalization(),
-    layers.Conv2D(32, (16, 16), input_shape=(128, 128, 1), activation='relu'),
+    layers.Conv2D(32, (16, 16), input_shape=(600, 600, 1), activation='relu'),
     layers.Conv2D(64, (12, 12), activation='relu'),
     layers.Conv2D(64, (10, 10), activation='relu'),
     layers.Conv2D(128, (8, 8), activation='relu'),
