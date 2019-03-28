@@ -37,8 +37,6 @@ def load_data():
     (test_images, test_labels) = data_test.get_batch(50)
     (train_images, train_labels) = data_train.get_batch(50)
 
-    # print(test_labels)
-
 class data():
     def __init__(self, paths):
         self.paths = paths
