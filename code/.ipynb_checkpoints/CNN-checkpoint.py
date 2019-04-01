@@ -1,5 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras import layers
+import os
 
 model = tf.keras.Sequential([
     layers.BatchNormalization(),
@@ -18,5 +19,6 @@ model = tf.keras.Sequential([
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
+
 
 

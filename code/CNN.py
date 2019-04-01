@@ -2,8 +2,6 @@ import tensorflow as tf
 from tensorflow.keras import layers
 import os
 
-os.chdir('..')
-
 model = tf.keras.Sequential([
     layers.BatchNormalization(),
     layers.Conv2D(32, (16, 16), input_shape=(600, 600, 1), activation='relu'),
