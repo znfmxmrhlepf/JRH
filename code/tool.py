@@ -22,7 +22,8 @@ def load_data():
 
     os.chdir('..')
     f = open('Images/list.txt')
-    classes = map(lambda x:  x[:-1], f.readlines())
+    classes = list(map(lambda x:  x[:-1], f.readlines()))
+    classes.sort()
 
     paths = []
     for classf in classes:
@@ -34,8 +35,7 @@ def load_data():
     data_test = data(imagePaths[:500])
     data_train = data(imagePaths[500:])
 
-    (test_images, test_labels) = data_test.get_batch(50)
-    (train_images, train_labels) = data_train.get_batch(50)
+    return data_test, data_train
 
 class data():
     def __init__(self, paths):
