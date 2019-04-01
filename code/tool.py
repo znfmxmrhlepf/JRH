@@ -8,11 +8,11 @@ import cv2
 random.seed(time.time())
 
 def get_images(paths):
-    images = np.zeros((len(paths), 600, 600, 3))
+    images = np.zeros((len(paths), 60, 60, 3))
     labels = np.zeros((len(paths), 19))
 
     for i, path in enumerate(paths):
-        images[i, :, :, :] = cv2.imread(path)
+        images[i, :, :, :] = cv2.resize(cv2.imread(path), None, fx=0.1, fy=0.1, interpolation=cv2.INTER_AREA)
         print(path[:path.find('_')])
         labels[i] = int(path[:path.find('_')])
 
